@@ -18,7 +18,7 @@ The library use Guzzle http client ("guzzlehttp/guzzle": "^7.4"). So be sure tha
 Install the package via Composer. Run the Composer require command from the Terminal:
 
 ```
-composer require invays/bogpayments
+composer require invays/bog-payments
 ```
 
 ## Example
