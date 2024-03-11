@@ -1,0 +1,36 @@
+{
+    "name": "invays/bog-payments",
+    "type": "library",
+    "license": "MIT",
+    "description": "",
+    "keywords": [
+        "bank of georgia",
+        "bog api",
+        "bog online payments",
+        "bog payment integration",
+        "bog api php"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Invays\\BogPayments\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Invays\\BogPayments\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arindam Paul"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}
