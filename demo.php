@@ -30,18 +30,20 @@ class Demo
             'products'      => [
                 [
                     'product_id' => 'product123',
-                    'quantity'   => 1,
-                    'price'      => 100,
+                    'quantity'   => 3,
+                    'price'      => 101.0000,
                 ],
                 [
                     'product_id' => 'product123de',
                     'quantity'   => 1,
-                    'price'      => 525,
+                    'price'      => 500.0000,
                 ],
 
             ],
-            'delivery_cost' => 1000
+            'delivery_cost' => 5.0000
         ]);
+
+        //print_r($order_info);
 
         if (isset($order_info['_links']['redirect']['href'])) {
             echo $order_info['_links']['redirect']['href'];
@@ -55,6 +57,10 @@ class Demo
             echo '<br>';
         }
 
+        $bog = new BogPayments(19454, '', 'installment');
+        $bog->installment->setButtonText('My custom text');
+        $bog->installment->setCallbackUrl('https://example.com/notify');
+        print_r($bog->installment->calculator(2348.44));
     }
 }
 

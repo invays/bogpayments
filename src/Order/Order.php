@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use Invays\BogPayments\BogPayments;
 use Invays\BogPayments\Order\Language;
 use Invays\BogPayments\Order\Currency;
+use Invays\BogPayments\Order\Status;
 
 //Optional
 use Invays\BogPayments\Theme\Theme;
@@ -71,19 +72,19 @@ class Order extends BogPayments
     {
         $json = [];
 
-        if (!isset($this->access_token) || is_null($this->access_token) || empty($this->access_token)) {
+        if (!isset ($this->access_token) || is_null($this->access_token) || empty ($this->access_token)) {
             $json = 'Access token is required';
         }
 
-        if (empty($this->callback_url)) {
+        if (empty ($this->callback_url)) {
             $json['error'] = 'Callback URL is required';
         }
 
-        if (!isset($order_info["shop_order_id"]) || empty($order_info["shop_order_id"])) {
+        if (!isset ($order_info["shop_order_id"]) || empty ($order_info["shop_order_id"])) {
             $json['error'] = 'Shop order ID is required';
         }
 
-        if (!isset($order_info["products"]) || empty($order_info["products"])) {
+        if (!isset ($order_info["products"]) || empty ($order_info["products"])) {
             $json['error'] = 'Cart items are required';
         }
 
@@ -95,16 +96,16 @@ class Order extends BogPayments
             $order_data["external_order_id"] = $order_info["shop_order_id"];
 
             // Optional Customer info
-            if (isset($order_info["customer"]) && !empty($order_info["customer"])) {
-                if (isset($order_info["customer"]["full_name"]) && !empty($order_info["customer"]["full_name"])) {
+            if (isset ($order_info["customer"]) && !empty ($order_info["customer"])) {
+                if (isset ($order_info["customer"]["full_name"]) && !empty ($order_info["customer"]["full_name"])) {
                     $order_data['buyer']['full_name'] = $order_info["customer"]["full_name"];
                 }
 
-                if (isset($order_info["customer"]["masked_email"]) && !empty($order_info["customer"]["masked_email"])) {
+                if (isset ($order_info["customer"]["masked_email"]) && !empty ($order_info["customer"]["masked_email"])) {
                     $order_data['buyer']['masked_email'] = $order_info["customer"]["masked_email"];
                 }
 
-                if (isset($order_info["customer"]["masked_phone"]) && !empty($order_info["customer"]["masked_phone"])) {
+                if (isset ($order_info["customer"]["masked_phone"]) && !empty ($order_info["customer"]["masked_phone"])) {
                     $order_data['buyer']["masked_phone"] = $order_info["customer"]["masked_phone"];
                 }
             }
@@ -148,12 +149,12 @@ class Order extends BogPayments
             $order_data['purchase_units']['total_amount'] = $total_amount;
             $order_data['purchase_units']['basket'] = $basket;
 
-            if (isset($order_info["delivery_cost"]) && !empty($order_info["delivery_cost"])) {
+            if (isset ($order_info["delivery_cost"]) && !empty ($order_info["delivery_cost"])) {
                 $order_data['purchase_units']['delivery']['amount'] = $order_info["delivery_cost"];
                 $order_data['purchase_units']['total_amount'] += $order_info["delivery_cost"];
             }
 
-            if (!empty($this->failure_url) && !empty($this->success_url)) {
+            if (!empty ($this->failure_url) && !empty ($this->success_url)) {
                 $order_data['redirect_urls'] = [
                     "fail"    => $this->failure_url,
                     "success" => $this->success_url,
@@ -186,7 +187,7 @@ class Order extends BogPayments
                 'Accept-Language' => $this->language,
             ];
 
-            if (!empty($this->theme)) {
+            if (!empty ($this->theme)) {
                 $headers['Theme'] = $this->theme;
             }
 
@@ -225,7 +226,7 @@ class Order extends BogPayments
                 'Accept-Language' => $this->language,
             ];
 
-            if (!empty($this->theme)) {
+            if (!empty ($this->theme)) {
                 $headers['Theme'] = $this->theme;
             }
 
