@@ -93,12 +93,24 @@ $order_info = $bog->order->create_order([
         ]);
 ```
 
-Creare refund
+Create refund
 
 ```php
 use Invays\BogPayments\BogPayments;
 
 $bog = new BogPayments(0000, '000000');
 $bog->refund->create_refund('order_id', 10.0);
+
+```
+
+Create installment button
+
+```php
+use Invays\BogPayments\BogPayments;
+
+// Use separate key for installment
+$bog = new BogPayments(00000, '', 'installment');
+$bog->installment->setButtonText('My custom text');
+$bog->installment->setCallbackUrl('https://example.com/notify');
 
 ```
