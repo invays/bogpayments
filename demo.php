@@ -57,7 +57,7 @@ class Demo
             echo '<br>';
         }
 
-        $bog = new BogPayments(19454, '', 'installment');
+        $bog = new BogPayments(0000, '', 'installment');
         $bog->installment->setButtonText('My custom text');
         $bog->installment->setCallbackUrl('https://example.com/notify');
         print_r($bog->installment->calculator(2348.44));
